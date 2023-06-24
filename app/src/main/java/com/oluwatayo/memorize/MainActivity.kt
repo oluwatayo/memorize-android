@@ -41,6 +41,7 @@ import com.oluwatayo.memorize.ui.theme.MemorizeTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,31 +98,24 @@ fun Memorize() {
                 }
             })
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(horizontal = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                Icons.Filled.Delete,
-                contentDescription = "Delete",
-                modifier = Modifier
-                    .clip(
-                        CircleShape
-                    )
-                    .size(40.dp)
-                    .clickable {
-                        if (endIndex > 1)
-                            endIndex--
-                    }
-            )
-            Icon(
-                Icons.Filled.Add, contentDescription = "Add",
-                modifier = Modifier
-                    .size(40.dp)
-                    .clickable {
-                        if (endIndex < emojis.size)
-                            endIndex++
-                    }
-            )
+            Icon(painter = painterResource(id = R.drawable.ic_minus), contentDescription = "Minus button",
+            modifier = Modifier
+                .size(45.dp)
+                .clickable {
+                if (endIndex < emojis.size)
+                    endIndex++
+            }, tint = Color.Red)
+            Icon(painter = painterResource(id = R.drawable.ic_add_new), contentDescription = "Add Button",
+            modifier = Modifier
+                .size(45.dp)
+                .clickable {
+                if (endIndex > 1)
+                    endIndex--
+            }, tint = Color.Blue)
         }
     }
 }
